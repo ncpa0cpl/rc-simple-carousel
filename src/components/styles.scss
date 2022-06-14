@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.simple-carousel-default-button {
+    font-family: Poppins;
+    font-size: 28px;
+    padding: 8px 20px;
+    background-color: #e3e3e3;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    :hover {
+        background-color: #cbcbcb;
+    }
+}

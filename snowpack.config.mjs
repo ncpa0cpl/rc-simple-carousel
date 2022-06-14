@@ -17,6 +17,7 @@ export default {
     // "bundle": true,
   },
   packageOptions: {
+    external: ["react", "react-dom", "react-spring"],
     /* ... */
   },
   devOptions: {
