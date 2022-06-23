@@ -1,4 +1,4 @@
-import { CalculateNextScrollByParams, Percentage, Pixels } from "../types";
+import type { CalculateNextScrollByParams, Percentage, Pixels } from "../types";
 import { adjustToSnap } from "./adjust-to-snap";
 import {
   getFirstInvisibleChildToLeft,
@@ -42,7 +42,7 @@ export const calculateNextScrollBy = (
 
   if (typeof scrollBy === "number") {
     switch (direction) {
-      case "right":
+      case "right": {
         const [firstInvisibleChildIndex, firstInvisibleChildWidth] =
           getFirstInvisibleChildToRight(params);
 
@@ -65,6 +65,7 @@ export const calculateNextScrollBy = (
         }
 
         return scrollByTotal;
+      }
       case "left": {
         const [firstInvisibleChildIndex, firstInvisibleChildWidth] =
           getFirstInvisibleChildToLeft(params);

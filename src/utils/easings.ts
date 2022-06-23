@@ -1,4 +1,5 @@
-import { EasingFunction, easings } from "react-spring";
+import type { EasingFunction } from "react-spring";
+import { easings } from "react-spring";
 
 export type Easings = keyof typeof easings;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollFn } from "./types";
+import type { ScrollFn } from "./types";
 
 export type CarouselController = {
   scroll(...args: Parameters<ScrollFn>): void;

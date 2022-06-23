@@ -18,7 +18,9 @@
     "postinstall": "patch-package",
     "test:tsc": "tsc --noEmit",
     "test:lint": "eslint src/**/*.{ts,tsx}",
-    "test:prettier": "prettier --check 'src/**/*.{ts,tsx}'"
+    "test:prettier": "prettier --check 'src/**/*.{ts,tsx}'",
+    "fix:lint": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "fix:prettier": "prettier --write 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
     "@snowpack/plugin-sass": "^1.4.0",

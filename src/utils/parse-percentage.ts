@@ -1,4 +1,4 @@
-import { Percentage } from "../types";
+import type { Percentage } from "../types";
 
 export const parsePercentage = (percentage: Percentage) => {
   return Math.max(

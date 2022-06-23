@@ -1,4 +1,4 @@
-import { CalculateNextScrollByParams } from "../types";
+import type { CalculateNextScrollByParams } from "../types";
 import {
   getFirstInvisibleChildToLeft,
   getFirstInvisibleChildToRight,

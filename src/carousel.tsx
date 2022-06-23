@@ -2,13 +2,14 @@ import React from "react";
 import { animated, useSpring } from "react-spring";
 import { DefaultArrowButton } from "./components/default-arrow-button";
 import "./styles.scss";
-import {
+import type {
   CarouselProps,
   ScrollByProp,
   ScrollDirection,
   ScrollFn,
 } from "./types";
-import { SwipeEndCords, useSwipe } from "./use-swipe/use-swipe";
+import type { SwipeEndCords } from "./use-swipe/use-swipe";
+import { useSwipe } from "./use-swipe/use-swipe";
 import { adjustToSnap } from "./utils/adjust-to-snap";
 import { calculateNextScrollBy } from "./utils/calculate-next-scroll-by";
 import { clsn } from "./utils/clsn";

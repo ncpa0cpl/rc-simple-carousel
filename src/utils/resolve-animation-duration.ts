@@ -1,4 +1,4 @@
-import { AnimationDurationProp } from "../types";
+import type { AnimationDurationProp } from "../types";
 
 export const resolveAnimationDuration = (
   duration: AnimationDurationProp | undefined,

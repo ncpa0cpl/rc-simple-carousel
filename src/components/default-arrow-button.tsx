@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollDirection } from "../types";
+import type { ScrollDirection } from "../types";
 import "./styles.scss";
 
 export const DefaultArrowButton = (props: { direction: ScrollDirection }) => {
