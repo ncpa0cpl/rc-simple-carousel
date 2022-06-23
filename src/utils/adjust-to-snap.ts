@@ -17,22 +17,24 @@ export const adjustToSnap = (
           currentOffset: params.currentOffset + scrollBy,
         });
 
-      const ficFullWidth = params.childrenWidths[firstInvisibleChildIndex];
+      const firstInvisibleChildWidth =
+        params.childrenWidths[firstInvisibleChildIndex];
 
-      if (hiddenWidth > ficFullWidth * directionThreshold) {
-        const newScrollBy =
-          ficFullWidth > hiddenWidth
-            ? scrollBy - (ficFullWidth - hiddenWidth)
-            : scrollBy + hiddenWidth;
+      if (hiddenWidth > firstInvisibleChildWidth * directionThreshold) {
+        const newScrollBy = scrollBy - (firstInvisibleChildWidth - hiddenWidth);
+
+        if (
+          scrollBy > firstInvisibleChildWidth ||
+          hiddenWidth > firstInvisibleChildWidth
+        ) {
+          return newScrollBy;
+        }
 
         if (newScrollBy <= 0) {
           return scrollBy + hiddenWidth;
         }
-
-        return newScrollBy;
-      } else {
-        return scrollBy + hiddenWidth;
       }
+      return scrollBy + hiddenWidth;
     }
     case "left": {
       const [firstInvisibleChildIndex, hiddenWidth] =
@@ -41,22 +43,24 @@ export const adjustToSnap = (
           currentOffset: params.currentOffset - scrollBy,
         });
 
-      const ficFullWidth = params.childrenWidths[firstInvisibleChildIndex];
+      const firstInvisibleChildWidth =
+        params.childrenWidths[firstInvisibleChildIndex];
 
-      if (hiddenWidth > ficFullWidth * directionThreshold) {
-        const newScrollBy =
-          ficFullWidth > hiddenWidth
-            ? scrollBy - (ficFullWidth - hiddenWidth)
-            : scrollBy + hiddenWidth;
+      if (hiddenWidth > firstInvisibleChildWidth * directionThreshold) {
+        const newScrollBy = scrollBy - (firstInvisibleChildWidth - hiddenWidth);
+
+        if (
+          scrollBy > firstInvisibleChildWidth ||
+          hiddenWidth > firstInvisibleChildWidth
+        ) {
+          return newScrollBy;
+        }
 
         if (newScrollBy <= 0) {
           return scrollBy + hiddenWidth;
         }
-
-        return newScrollBy;
-      } else {
-        return scrollBy + hiddenWidth;
       }
+      return scrollBy + hiddenWidth;
     }
   }
 };
