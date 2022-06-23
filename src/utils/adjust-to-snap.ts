@@ -6,6 +6,7 @@ import {
 
 export const adjustToSnap = (
   scrollBy: number,
+  directionThreshold: number,
   params: CalculateNextScrollByParams
 ): number => {
   switch (params.direction) {
@@ -18,11 +19,16 @@ export const adjustToSnap = (
 
       const ficFullWidth = params.childrenWidths[firstInvisibleChildIndex];
 
-      if (hiddenWidth > ficFullWidth / 2) {
-        const newScrollBy = scrollBy - (ficFullWidth - hiddenWidth);
-        if (newScrollBy <= 5) {
-          return scrollBy;
+      if (hiddenWidth > ficFullWidth * directionThreshold) {
+        const newScrollBy =
+          ficFullWidth > hiddenWidth
+            ? scrollBy - (ficFullWidth - hiddenWidth)
+            : scrollBy + hiddenWidth;
+
+        if (newScrollBy <= 0) {
+          return scrollBy + hiddenWidth;
         }
+
         return newScrollBy;
       } else {
         return scrollBy + hiddenWidth;
@@ -37,11 +43,16 @@ export const adjustToSnap = (
 
       const ficFullWidth = params.childrenWidths[firstInvisibleChildIndex];
 
-      if (hiddenWidth > ficFullWidth / 2) {
-        const newScrollBy = scrollBy - (ficFullWidth - hiddenWidth);
-        if (newScrollBy <= 5) {
-          return scrollBy;
+      if (hiddenWidth > ficFullWidth * directionThreshold) {
+        const newScrollBy =
+          ficFullWidth > hiddenWidth
+            ? scrollBy - (ficFullWidth - hiddenWidth)
+            : scrollBy + hiddenWidth;
+
+        if (newScrollBy <= 0) {
+          return scrollBy + hiddenWidth;
         }
+
         return newScrollBy;
       } else {
         return scrollBy + hiddenWidth;

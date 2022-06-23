@@ -8,6 +8,8 @@ import {
   ScrollDirection,
   ScrollFn,
 } from "./types";
+import { SwipeEndCords, useSwipe } from "./use-swipe/use-swipe";
+import { adjustToSnap } from "./utils/adjust-to-snap";
 import { calculateNextScrollBy } from "./utils/calculate-next-scroll-by";
 import { clsn } from "./utils/clsn";
 import { getEasing } from "./utils/easings";
@@ -34,6 +36,8 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
     className,
     contentClassName,
     contentWrapperClassName,
+    trackMouse = false,
+    touchControls = false,
   } = props;
 
   const renderArrowButton = props.renderArrowButton ?? renderDefaultArrowButton;
@@ -41,17 +45,106 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const previousOffset = React.useRef(0);
-  const [offset, setOffset] = React.useState(0);
+
+  const [offsetAnimation, setOffsetAnimation] = React.useState({
+    offset: 0,
+    skipAnimation: false,
+  });
+
   const animatedValue = useSpring({
-    left: offset,
-    config: {
-      duration: resolveAnimationDuration(
-        animationDuration,
-        offset,
-        previousOffset.current
-      ),
-      easing: getEasing(easing),
-    },
+    left: offsetAnimation.offset,
+    config: offsetAnimation.skipAnimation
+      ? { duration: 1 }
+      : {
+          duration: resolveAnimationDuration(
+            animationDuration,
+            offsetAnimation.offset,
+            previousOffset.current
+          ),
+          easing: getEasing(easing),
+        },
+  });
+
+  const swipeProps = useSwipe({
+    trackMouse,
+    onSwipe: React.useCallback(
+      ({ deltaX }) => {
+        if (!touchControls) return;
+
+        const wrapper = wrapperRef.current;
+        const container = containerRef.current;
+        if (!wrapper || !container) return;
+
+        const childrenWidths = [...container.children].map((child) =>
+          getElementFullWidth(child)
+        );
+        const totalChildrenWidth = childrenWidths.reduce(
+          (sum, element) => sum + element,
+          0
+        );
+
+        const divWidth = wrapper.clientWidth;
+        const maxOffset = -Math.max(0, totalChildrenWidth - divWidth) - 100;
+
+        setOffsetAnimation((current) => ({
+          offset: Math.min(100, Math.max(maxOffset, current.offset - deltaX)),
+          skipAnimation: true,
+        }));
+      },
+      [touchControls]
+    ),
+    onSwipeEnd: React.useCallback(
+      ({ startX, currentX, totalDeltaX }: SwipeEndCords) => {
+        if (!touchControls) return;
+
+        const container = containerRef.current;
+        const wrapper = wrapperRef.current;
+        if (forceSnap && container && wrapper)
+          setOffsetAnimation(({ offset }) => {
+            const initialAnimationOffset = offset + totalDeltaX;
+
+            const childrenWidths = [...container.children].map((child) =>
+              getElementFullWidth(child)
+            );
+            const totalChildrenWidth = childrenWidths.reduce(
+              (sum, element) => sum + element,
+              0
+            );
+
+            const direction = currentX < startX ? "right" : "left";
+
+            const scrollBy = adjustToSnap(Math.abs(totalDeltaX), 0.5, {
+              currentOffset: -1 * initialAnimationOffset,
+              scrollBy: Math.abs(totalDeltaX),
+              childrenWidths,
+              direction,
+              forceSnap,
+              totalChildrenWidth,
+              visibilityThreshold,
+              wrapper,
+            });
+
+            const maxOffset = -Math.max(
+              0,
+              totalChildrenWidth - wrapper.clientWidth
+            );
+
+            return {
+              offset: Math.min(
+                0,
+                Math.max(
+                  maxOffset,
+                  direction === "right"
+                    ? initialAnimationOffset - scrollBy
+                    : initialAnimationOffset + scrollBy
+                )
+              ),
+              skipAnimation: false,
+            };
+          });
+      },
+      [forceSnap, visibilityThreshold, touchControls]
+    ),
   });
 
   const scroll: ScrollFn = React.useCallback(
@@ -59,7 +152,7 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
       const container = containerRef.current;
       const wrapper = wrapperRef.current;
       if (container && wrapper) {
-        setOffset((offset) => {
+        setOffsetAnimation(({ offset }) => {
           const childrenWidths = [...container.children].map((child) =>
             getElementFullWidth(child)
           );
@@ -84,17 +177,26 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
           switch (direction) {
             case "right": {
               if (offset <= maxOffset && loop) {
-                return 0;
+                return {
+                  offset: 0,
+                  skipAnimation: false,
+                };
               }
               const newOffset = Math.max(maxOffset, offset - scrollByAmount);
-              return newOffset;
+              return { offset: newOffset, skipAnimation: false };
             }
             case "left": {
               if (offset >= 0 && loop) {
-                return maxOffset;
+                return {
+                  offset: maxOffset,
+                  skipAnimation: false,
+                };
               }
               const newOffset = Math.min(0, offset + scrollByAmount);
-              return newOffset;
+              return {
+                offset: newOffset,
+                skipAnimation: false,
+              };
             }
           }
         });
@@ -103,8 +205,8 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
     [visibilityThreshold, loop, forceSnap, easing, scrollBy]
   );
 
-  if (offset !== previousOffset.current) {
-    previousOffset.current = offset;
+  if (offsetAnimation.offset !== previousOffset.current) {
+    previousOffset.current = offsetAnimation.offset;
   }
 
   if (bindController) {
@@ -127,6 +229,7 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
         <></>
       )}
       <div
+        {...(touchControls ? swipeProps : {})}
         ref={wrapperRef}
         className={clsn(
           "simple-carousel-content-wrapper",
@@ -136,7 +239,7 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
         <animated.div
           ref={containerRef}
           style={animatedValue}
-          className={clsn("simple-carousel-content", contentClassName)}
+          className={clsn("simple-carousel-container", contentClassName)}
         >
           {props.children}
         </animated.div>

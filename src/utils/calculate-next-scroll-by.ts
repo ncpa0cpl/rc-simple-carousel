@@ -33,7 +33,7 @@ export const calculateNextScrollBy = (
   if (typeof scrollBy === "function") {
     const scrollByTotal = scrollBy(currentOffset, wrapperWidth, childrenWidths);
 
-    if (forceSnap) return adjustToSnap(scrollByTotal, params);
+    if (forceSnap) return adjustToSnap(scrollByTotal, 0.5, params);
     return scrollByTotal;
   }
 
@@ -95,13 +95,13 @@ export const calculateNextScrollBy = (
   if (isPercentage(scrollBy)) {
     const scrollByPercent = parsePercentage(scrollBy);
     const scrollByTotal = scrollByPercent * wrapperWidth;
-    if (forceSnap) return adjustToSnap(scrollByTotal, params);
+    if (forceSnap) return adjustToSnap(scrollByTotal, 0.5, params);
     return scrollByTotal;
   }
 
   if (isPixel(scrollBy)) {
     const scrollByPixels = parsePixels(scrollBy);
-    if (forceSnap) return adjustToSnap(scrollByPixels, params);
+    if (forceSnap) return adjustToSnap(scrollByPixels, 0.5, params);
     return scrollByPixels;
   }
 

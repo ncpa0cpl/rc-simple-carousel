@@ -29,6 +29,10 @@ export type CarouselProps = {
   contentWrapperClassName?: string;
   /** Class name of the carousel content div (the direct parent of the carousel slides). */
   contentClassName?: string;
+  /** Enables touch control over the carousel (ability to scroll the carouse by swiping on it). */
+  touchControls?: boolean;
+  /** When enabled, touch controls can also be used via mouse, by dragging the carousel. */
+  trackMouse?: boolean;
   /**
    * Defines by how much scroll the carousel on arrow click. This property
    * can be a percentage, it then will scroll by a percentage of the wrapper
