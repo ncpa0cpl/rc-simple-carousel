@@ -1,0 +1,19 @@
+diff --git a/node_modules/esinstall/lib/index.js b/node_modules/esinstall/lib/index.js
+index f4b4799..bff041f 100644
+--- a/node_modules/esinstall/lib/index.js
++++ b/node_modules/esinstall/lib/index.js
+@@ -220,10 +220,10 @@ async function install(_installTargets, _options = {}) {
+             throw err;
+         }
+     }
+-    if (Object.keys(installEntrypoints).length === 0 && Object.keys(assetEntrypoints).length === 0) {
+-        throw new Error(`No ESM dependencies found!
+-${colors.dim(`  At least one dependency must have an ESM "module" entrypoint. You can find modern, web-ready packages at ${colors.underline('https://www.skypack.dev')}`)}`);
+-    }
++//     if (Object.keys(installEntrypoints).length === 0 && Object.keys(assetEntrypoints).length === 0) {
++//         throw new Error(`No ESM dependencies found!
++// ${colors.dim(`  At least one dependency must have an ESM "module" entrypoint. You can find modern, web-ready packages at ${colors.underline('https://www.skypack.dev')}`)}`);
++//     }
+     await es_module_lexer_1.init;
+     let isFatalWarningFound = false;
+     const inputOptions = {
