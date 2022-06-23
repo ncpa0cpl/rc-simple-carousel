@@ -2,7 +2,6 @@
   "name": "rc-simple-carousel",
   "version": "1.0.0",
   "main": "./dist/index.js",
-  "version": "1.0.0",
   "description": "A simple carousel component for React",
   "keywords": [
     "react",
@@ -15,7 +14,7 @@
   "scripts": {
     "build": "snowpack build && yarn generate-declarations",
     "generate-declarations": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist",
-    "postinstall": "patch-package",
+    "postinstall": "exitzero patch-package",
     "test:tsc": "tsc --noEmit",
     "test:lint": "eslint src/**/*.{ts,tsx}",
     "test:prettier": "prettier --check 'src/**/*.{ts,tsx}'",
@@ -60,6 +59,7 @@
     "url": "https://github.com/ncpa0cpl/rc-simple-carousel/issues"
   },
   "dependencies": {
+    "exitzero": "^1.0.1",
     "git-hook-tasks": "ncpa0cpl/git-hook-tasks",
     "husky": "^8.0.1"
   }
