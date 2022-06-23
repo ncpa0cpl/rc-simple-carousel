@@ -29,7 +29,7 @@ export type CarouselProps = {
   contentWrapperClassName?: string;
   /** Class name of the carousel content div (the direct parent of the carousel slides). */
   contentClassName?: string;
-  /** Enables touch control over the carousel (ability to scroll the carouse by swiping on it). */
+  /** Enables touch control over the carousel (ability to scroll the carousel by swiping on it). */
   touchControls?: boolean;
   /** When enabled, touch controls can also be used via mouse, by dragging the carousel. */
   trackMouse?: boolean;
@@ -78,7 +78,7 @@ export type CarouselProps = {
    */
   easing?: Easings;
   /**
-   * Only used when scroll by is a percentage value or a function or when
+   * Only used when scroll by is a percentage value, a function or when
    * scrolling via touch swipe gesture. Enabling this option will force Carousel
    * to snap to slides when scrolling.
    */
@@ -89,7 +89,7 @@ export type CarouselProps = {
    */
   loop?: boolean;
   /**
-   * Set to false to not show the left and right arrow buttons.
+   * Set to false to not render the left and right arrow buttons.
    */
   showArrowButtons?: boolean;
   /**
