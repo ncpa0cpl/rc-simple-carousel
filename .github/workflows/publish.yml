@@ -54,23 +54,7 @@ jobs: {
           NPM_TOKEN: "${{ secrets.NPM_AUTOMATION_TOKEN }}",
           TAG_NAME: "${{ github.event.release.tag_name }}",
         },
-        run: '
-          issemver=$(./scripts/check-semver.sh -t "$TAG_NAME")
-
-          currenttag=$(npm pkg get version)
-
-          if [ "$issemver" -eq "1" ]; then
-
-            if ! [ "$currenttag" -eq "\"$TAG_NAME\"" ]; then
-
-              npm version --no-git-tag-version "$TAG_NAME"
-
-            fi
-
-            npm publish && git checkout .
-
-          fi
-        ',
+        run: './scripts/publish.sh',
       },
     ],
   },
