@@ -1559,6 +1559,11 @@ execa@^5.0.0, execa@^5.1.1:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
+exitzero@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/exitzero/-/exitzero-1.0.1.tgz#0da67af3c8ab131768daaf361f33b1a2d231a21b"
+  integrity sha512-TFqfd0V9fE7rsDlAX2V5VpyLjAT3n3x4pJqZur7dm2pDTLlx8rGpv4fS0UqSn5ur/hMyqIVss4yps5EfMt+FBA==
+
 extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"

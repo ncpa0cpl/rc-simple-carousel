@@ -98,6 +98,16 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
       ({ startX, currentX, totalDeltaX }: SwipeEndCords) => {
         if (!touchControls) return;
 
+        if (Math.abs(totalDeltaX) < 8) {
+          setOffsetAnimation(({ offset }) => {
+            return {
+              offset: offset + totalDeltaX,
+              skipAnimation: false,
+            };
+          });
+          return;
+        }
+
         const container = containerRef.current;
         const wrapper = wrapperRef.current;
         if (forceSnap && container && wrapper)
