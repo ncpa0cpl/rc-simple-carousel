@@ -1,8 +1,17 @@
 {
   "name": "rc-simple-carousel",
   "main": "./dist/index.js",
+  "version": "1.0.0",
+  "description": "A simple carousel component for React",
+  "keywords": [
+    "react",
+    "carousel",
+    "rc",
+    "component",
+    "animated",
+    "animation"
+  ],
   "scripts": {
-    "start": "snowpack dev",
     "build": "snowpack build && yarn generate-declarations",
     "generate-declarations": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist",
     "postinstall": "patch-package"
@@ -22,5 +31,19 @@
     "react": ">16.8.0",
     "react-dom": ">16.8.0",
     "react-spring": ">9.0.0"
+  },
+  "author": {
+    "email": "szymonb21@gmail.com",
+    "name": "Szymon Bretner",
+    "url": "https://github.com/ncpa0cpl"
+  },
+  "repository": {
+    "url": "https://github.com/ncpa0cpl/rc-simple-carousel",
+    "type": "git",
+    "branch": "master"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ncpa0cpl/rc-simple-carousel/issues"
   }
 }
