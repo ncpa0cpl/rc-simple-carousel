@@ -1,10 +1,19 @@
-import { CalculateNextScrollByParams } from "../types";
+import { CalculateNextScrollByParams, Percentage, Pixels } from "../types";
 import { adjustToSnap } from "./adjust-to-snap";
 import {
   getFirstInvisibleChildToLeft,
   getFirstInvisibleChildToRight,
 } from "./get-first-invisible-child";
 import { parsePercentage } from "./parse-percentage";
+import { parsePixels } from "./parse-pixels";
+
+export const isPercentage = (value: string): value is Percentage => {
+  return value.endsWith("%");
+};
+
+export const isPixel = (value: string): value is Pixels => {
+  return value.endsWith("px");
+};
 
 export const calculateNextScrollBy = (
   params: CalculateNextScrollByParams
@@ -83,8 +92,18 @@ export const calculateNextScrollBy = (
     }
   }
 
-  const scrollByPercent = parsePercentage(scrollBy);
-  const scrollByTotal = scrollByPercent * wrapperWidth;
-  if (forceSnap) return adjustToSnap(scrollByTotal, params);
-  return scrollByTotal;
+  if (isPercentage(scrollBy)) {
+    const scrollByPercent = parsePercentage(scrollBy);
+    const scrollByTotal = scrollByPercent * wrapperWidth;
+    if (forceSnap) return adjustToSnap(scrollByTotal, params);
+    return scrollByTotal;
+  }
+
+  if (isPixel(scrollBy)) {
+    const scrollByPixels = parsePixels(scrollBy);
+    if (forceSnap) return adjustToSnap(scrollByPixels, params);
+    return scrollByPixels;
+  }
+
+  return 0;
 };

@@ -4,9 +4,12 @@ export type ScrollDirection = "left" | "right";
 
 export type Percentage = `${number}%`;
 
+export type Pixels = `${number}px`;
+
 export type ScrollByProp =
   | number
   | Percentage
+  | Pixels
   | ((
       currentOffset: number,
       containerWidth: number,
@@ -18,6 +21,14 @@ export type AnimationDurationProp =
   | ((nextScrollAmount: number) => number);
 
 export type CarouselProps = {
+  /** Class names for the most-outer div of the carousel. */
+  className?: string;
+  /** Class name for the arrow button wrappers. */
+  arrowButtonWrapperClassName?: string;
+  /** Class name of the div wrapping around the carousel content div. */
+  contentWrapperClassName?: string;
+  /** Class name of the carousel content div (the direct parent of the carousel slides). */
+  contentClassName?: string;
   /**
    * Defines by how much scroll the carousel on arrow click. This property
    * can be a percentage, it then will scroll by a percentage of the wrapper

@@ -9,6 +9,7 @@ import {
   ScrollFn,
 } from "./types";
 import { calculateNextScrollBy } from "./utils/calculate-next-scroll-by";
+import { clsn } from "./utils/clsn";
 import { getEasing } from "./utils/easings";
 import { getElementFullWidth } from "./utils/get-element-full-width";
 import { resolveAnimationDuration } from "./utils/resolve-animation-duration";
@@ -29,6 +30,10 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
     showArrowButtons = true,
     animationDuration,
     bindController,
+    arrowButtonWrapperClassName,
+    className,
+    contentClassName,
+    contentWrapperClassName,
   } = props;
 
   const renderArrowButton = props.renderArrowButton ?? renderDefaultArrowButton;
@@ -107,22 +112,31 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
   }
 
   return (
-    <div className="simple-carousel">
+    <div className={clsn("simple-carousel", className)}>
       {showArrowButtons ? (
         <div
           onClick={() => scroll("left")}
-          className="simple-carousel-button-wrapper"
+          className={clsn(
+            "simple-carousel-button-wrapper",
+            arrowButtonWrapperClassName
+          )}
         >
           {renderArrowButton("left")}
         </div>
       ) : (
         <></>
       )}
-      <div ref={wrapperRef} className="simple-carousel-content-wrapper">
+      <div
+        ref={wrapperRef}
+        className={clsn(
+          "simple-carousel-content-wrapper",
+          contentWrapperClassName
+        )}
+      >
         <animated.div
           ref={containerRef}
           style={animatedValue}
-          className="simple-carousel-container"
+          className={clsn("simple-carousel-content", contentClassName)}
         >
           {props.children}
         </animated.div>
@@ -130,7 +144,10 @@ export const Carousel: React.FC<React.PropsWithChildren<CarouselProps>> = (
       {showArrowButtons ? (
         <div
           onClick={() => scroll("right")}
-          className="simple-carousel-button-wrapper"
+          className={clsn(
+            "simple-carousel-button-wrapper",
+            arrowButtonWrapperClassName
+          )}
         >
           {renderArrowButton("right")}
         </div>
