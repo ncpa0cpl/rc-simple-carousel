@@ -596,7 +596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.9":
+"@types/json-schema@npm:^7.0.11, @types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
   checksum: 527bddfe62db9012fccd7627794bd4c71beb77601861055d87e3ee464f2217c85fca7a4b56ae677478367bbd248dbde13553312b7d4dbc702a2f2bbf60c4018d
@@ -1420,10 +1420,10 @@ __metadata:
 
 clify.js@ncpa0cpl/clify.js:
   version: 1.0.3
-  resolution: "clify.js@https://github.com/ncpa0cpl/clify.js.git#commit=f2a18a7163fe2a7473a2406a3198ed3882018016"
+  resolution: "clify.js@https://github.com/ncpa0cpl/clify.js.git#commit=2da0d643c79bf75ae1ba7de4bc469ca2d25f88f0"
   dependencies:
     chalk: ^4.1.2
-  checksum: f092d826ba65e903002b02b51ead7eccb2ec5624d23c8eeb95adef29636757eaaa6868d5e25a6783200838610fee47b87a4f20273355e98adb4498b27224d588
+  checksum: 24439d7328d7782a2dce275efe18edfd7150a233f09ffb9434507f036932c76e284b6e63f822f4c99a9860b4f7f72c5aff0f84c21d457b2900b1f8fe795c7ad4
   languageName: node
   linkType: hard
 
@@ -1796,9 +1796,11 @@ clify.js@ncpa0cpl/clify.js:
   linkType: hard
 
 "dilswer@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "dilswer@npm:1.2.0"
-  checksum: 6b6243cff76db0397e0e15acbc8ecf52030149878346af1d6ef4fa0f2dba75ab05385f0f8130aeb0b7db3132bf7ff7ea0503f8c82a9d2385be0c2ca2dbfaf986
+  version: 1.5.0
+  resolution: "dilswer@npm:1.5.0"
+  dependencies:
+    "@types/json-schema": ^7.0.11
+  checksum: c31cc0f6a6d537e2641ebb303c6a1eea776cda2ca63780b5ce0256b1444449defa3e6ded5486a7c1be2e2b4a01f1b0b367dfd1e17fb6152845f2ce6bc013b3b3
   languageName: node
   linkType: hard
 
@@ -2524,7 +2526,7 @@ clify.js@ncpa0cpl/clify.js:
 
 git-hook-tasks@ncpa0cpl/git-hook-tasks:
   version: 1.0.0
-  resolution: "git-hook-tasks@https://github.com/ncpa0cpl/git-hook-tasks.git#commit=3307c52974824bfcdebe88241cb060ef2a36b382"
+  resolution: "git-hook-tasks@https://github.com/ncpa0cpl/git-hook-tasks.git#commit=475046a2550d299c6e807dad502a83dbbc25a0d6"
   dependencies:
     async-await-queue: ^1.2.1
     chalk: ^4.0.0
@@ -2536,25 +2538,7 @@ git-hook-tasks@ncpa0cpl/git-hook-tasks:
     husky: ^8.0.1
   bin:
     git-hook-tasks: dist/bin/bin.js
-  checksum: 1d85e1c93a536a300fe9d30c73993eee6070980b252a4b592cf0d0de717a9591a7cd2a0883c9a2ec6c7b3b5cddb157d28030a5c8899713264632c907783f25d9
-  languageName: node
-  linkType: hard
-
-github@ncpa0cpl/git-hook-tasks:
-  version: 1.0.0
-  resolution: "github@https://github.com/ncpa0cpl/git-hook-tasks.git#commit=475046a2550d299c6e807dad502a83dbbc25a0d6"
-  dependencies:
-    async-await-queue: ^1.2.1
-    chalk: ^4.0.0
-    clify.js: ncpa0cpl/clify.js
-    dilswer: ^1.2.0
-    node-os-walk: ^1.0.0
-    strip-ansi: ^6.0.1
-  peerDependencies:
-    husky: ^8.0.1
-  bin:
-    git-hook-tasks: dist/bin/bin.js
-  checksum: 9d280fe3d16fee66b439ed1e3751ced0a0c0fe912a09a0fb84662c194c13df5629b854b9e0bd1d5a943c4aa8f3884afe2c02dde43cc931a1f01ed5f105f35594
+  checksum: 126a7004a73673ed1d9bd98c968b2a05108484adcde62b3bdae1d42cb2cf9509ab922e2b1779ce99c2e4700c9afde86bcdd89883887c8aa820f0a275be19740b
   languageName: node
   linkType: hard
 
@@ -4033,9 +4017,9 @@ github@ncpa0cpl/git-hook-tasks:
   linkType: hard
 
 "node-os-walk@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "node-os-walk@npm:1.0.0"
-  checksum: 9f12eaf58ddcbcadf5f604e9c279f40c2e23e9cfc37541dabe59b230588bc77b9a3021ffc68928f7514d1287e92ebaa8b493c26e1e93065f89a5519ce8dea66e
+  version: 1.0.2
+  resolution: "node-os-walk@npm:1.0.2"
+  checksum: 7367682079c902f8dbfd9ca690097ad66d5fa8aaa73505193db4e6532348d5fb07ea986e218a51c2df5e4177c174a7ba939fb0ac2d4303f4cedfeb0fd4bda681
   languageName: node
   linkType: hard
 
@@ -4788,7 +4772,6 @@ github@ncpa0cpl/git-hook-tasks:
     eslint-plugin-prettier: ^4.2.1
     exitzero: ^1.0.1
     git-hook-tasks: ncpa0cpl/git-hook-tasks
-    github: ncpa0cpl/git-hook-tasks
     husky: ^8.0.3
     patch-package: ^6.5.1
     prettier: ^2.8.3
