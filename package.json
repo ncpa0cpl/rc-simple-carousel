@@ -25,19 +25,22 @@
     "@snowpack/plugin-sass": "^1.4.0",
     "@types/react": ">16.8.0",
     "@types/react-dom": ">16.8.0",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
-    "eslint": "^8.18.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "patch-package": "^6.4.7",
-    "prettier": "^2.7.1",
-    "prettier-plugin-jsdoc": "^0.3.38",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "exitzero": "^1.0.1",
+    "git-hook-tasks": "ncpa0cpl/git-hook-tasks",
+    "husky": "^8.0.3",
+    "patch-package": "^6.5.1",
+    "prettier": "^2.8.3",
+    "prettier-plugin-jsdoc": "^0.4.2",
     "react": ">16.8.0",
     "react-dom": ">16.8.0",
     "react-spring": ">9.0.0",
-    "snowpack": "^3.3.7",
-    "typescript": "^4.7.3"
+    "snowpack": "^3.8.8",
+    "typescript": "^4.9.4"
   },
   "peerDependencies": {
     "react": ">16.8.0",
@@ -58,9 +61,8 @@
   "bugs": {
     "url": "https://github.com/ncpa0cpl/rc-simple-carousel/issues"
   },
+  "packageManager": "yarn@3.3.1",
   "dependencies": {
-    "exitzero": "^1.0.1",
-    "git-hook-tasks": "ncpa0cpl/git-hook-tasks",
-    "husky": "^8.0.1"
+    "github": "ncpa0cpl/git-hook-tasks"
   }
 }
