@@ -1,5 +1,9 @@
 name: Publish
 
+permissions: {
+  repository-projects: write
+}
+
 on: {
   release: { 
     types: [released] 
@@ -12,7 +16,14 @@ env: {
 
 jobs: {
   publish: {
-    runs-on: ubuntu-latest,
+    permissions: {
+      packages: "write",
+      contents: "write",
+      pull-requests: "write",
+      issues: "write",
+      repository-projects: "write",
+    },
+    runs-on: "ubuntu-latest",
     strategy: {
       matrix: {
         node-version: [15.x] 
@@ -25,7 +36,11 @@ jobs: {
       },
       {
         name: Checkout, 
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3,
+        with: {
+          ref: "master",
+          token: "${{ secrets.GITHUB_TOKEN }}"
+        }
       },
       {
         name: Install dependencies,
