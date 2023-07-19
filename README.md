@@ -6,9 +6,9 @@ Simple React Carousel built on top of React Spring animation library.
 
 ## But why?
 
-There is already many Carousel components out there, so why bother with making a new one?
+There is already many Carousel components out there, so why a new one?
 
-The answer is simple, I needed to quickly add a Carousel to a website I was working on, and out of a few libraries I tried none was working out of the box. (I couldn't be bothered to troubleshoot them and find out why all slides of the carousel I was trying to make are rendered vertically when I specified in the props that I want it horizontal or why is the layout of it all over the place even though I imported all the css files, etc.) Out of frustration I made this component here. End of story.
+The answer is simple, as I've been trying out different carousel libraries out there, none really worked for me out of the box. Each had some problems with properly rendering, and who has the time to troubleshoot some third party lib? So here we are.
 
 ## Installation
 
