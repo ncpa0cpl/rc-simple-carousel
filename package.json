@@ -1,6 +1,6 @@
 {
   "name": "rc-simple-carousel",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "main": "./dist/esm/index.mjs",
   "types": "./dist/types/index.d.ts",
   "description": "A simple carousel component for React",
