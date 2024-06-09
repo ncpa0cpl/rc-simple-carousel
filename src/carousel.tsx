@@ -1,7 +1,7 @@
 import React from "react";
 import { animated, useSpring } from "react-spring";
 import { DefaultArrowButton } from "./components/default-arrow-button";
-import "./styles.scss";
+import "./styles.css";
 import type {
   CarouselProps,
   ScrollByProp,
